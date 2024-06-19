@@ -9,16 +9,14 @@ import java.util.List;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import wepik.backend.global.common.BaseTimeEntity;
 import wepik.backend.module.template.dao.MemTempMapping;
 import wepik.backend.module.question.dao.Question;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Member extends BaseTimeEntity {
@@ -46,13 +44,13 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
-    @NotNull
-    @Column(nullable = false)
-    private Boolean active;
+//    @NotNull
+//    @Column(nullable = false)
+//    private Boolean active;
 
     @NotNull
-    @Column(nullable = false)
-    private String provider;
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     @OneToMany(mappedBy = "member")
     private List<Question> questions = new ArrayList<>();

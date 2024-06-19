@@ -36,7 +36,7 @@ class MemberServiceTest {
         LoginRequest loginRequest = new LoginRequest("wepik@gmail.com", "12345678");
 
         //when
-        boolean isLogin = memberService.login(loginRequest);
+        boolean isLogin = memberService.adminLogin(loginRequest);
 
         //then
         Assertions.assertThat(isLogin).isTrue();

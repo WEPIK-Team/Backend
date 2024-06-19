@@ -5,6 +5,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import wepik.backend.global.common.BaseTimeEntity;
 import wepik.backend.module.file.dao.File;
+import wepik.backend.module.member.dao.Member;
 import wepik.backend.module.result.dao.Result;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,10 @@ public class Template extends BaseTimeEntity {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @OneToOne
     @JoinColumn(name = "file_id", nullable = false)

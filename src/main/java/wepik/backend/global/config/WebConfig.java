@@ -12,11 +12,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
-
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000", "https://wepik.kr") // 요청을 허용하는 도메인
+                        .allowedOrigins("http://localhost:3000", "https://wepik.kr", "https://www.wepik.kr") // 요청을 허용하는 도메인
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(true)
                         .allowedHeaders("*")
@@ -25,12 +24,10 @@ public class WebConfig implements WebMvcConfigurer {
 
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
+                //todo session 체크하는 경로 지정
+                // 임시로 템플릿 생성만 session 체크
                 registry.addInterceptor(new AuthenticationInterceptor())
-                        .addPathPatterns("/**") // 모든 경로에 인터셉터 설정
-                        .excludePathPatterns(
-                                "/member/admin/**",
-                                "/result",
-                                "/answer");
+                        .addPathPatterns("/template");
             }
         };
     }

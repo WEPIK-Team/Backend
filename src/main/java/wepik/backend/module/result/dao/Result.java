@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcType;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
+import wepik.backend.module.member.dao.Member;
 import wepik.backend.module.template.dao.Template;
 
 @Entity
@@ -40,6 +41,10 @@ public class Result {
     @ManyToOne
     @JoinColumn(name = "template_id")
     private Template template;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public void addAnswers(List<Answer> answers) {
         for (Answer answer : answers) {
