@@ -2,7 +2,8 @@ package wepik.backend.module.file.dao;
 
 public enum FileType {
     JPEG("image/jpeg", "jpeg"),
-    PNG("image/png", "png");
+    PNG("image/png", "png"),
+    GIF("image/gif", "gif");
 
     private final String mimeType;
     private final String fileExtension;
